@@ -1,0 +1,60 @@
+%\documentclass[a4paper,12pt]{jarticle}
+\documentclass[12pt,openany]{jbook} 
+
+%% フォント
+%\usepackage{newtxtext,newtxmath}
+%% 図、文字色
+\usepackage[dvipdfmx]{graphicx,xcolor}
+%% URL
+\usepackage{hyperref}
+%% 表
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{siunitx}
+
+%図と表の表記
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+
+\usepackage[top=20truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
+
+\usepackage{here}
+
+\usepackage{bm}
+\usepackage{amsmath,amssymb}
+\usepackage{type1cm}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz}
+
+\begin{document}
+
+% 表紙
+\begin{picture}(420,520)(-20,20)
+
+\put(140,320){\makebox(100,15)[c]{\LARGE{力学の指南書}}}
+
+%クリエータ名1（必須、人数に応じて\putの位置を調整）
+\put(140,70){\makebox(100,10)[c]{\Large{Nyanyan}}}
+%日付（必須、通常は契約最終日、クリエータ2がいなければ\put(140,60)
+\put(140,30){\makebox(100,15)[c]{\Large{2019年3月8日}}}
+\end{picture}
+\thispagestyle{empty}
+\clearpage
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+
+% 本文
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{1first.tex}
+\input{2premise.tex}
+\input{3differential.tex}
+\input{4rigid.tex}
+
+
+\end{document}

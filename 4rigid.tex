@@ -1,0 +1,113 @@
+\chapter{剛体の力学}
+\label{rigit}
+細い棒を立て、ちょんと上部を押すと倒れます。この現象を力学的に見てみましょう。どのようにして運動方程式を立てれば良いでしょうか。実はこれまで扱ってきた力学は全て「質点の力学」と呼ばれるもので、物体の回転運動を考慮していませんでした。そのため、これまでの知識ではこの運動を数式化することはできません。ここでは、物体の回転運動に関して学んでいきます。
+
+物体は全て、微小な分子に分解できます。そして、分子間の結合によってその形をとどめています。そのため、実在の物体は力をかけると変形します(この性質を持つ物体を弾性体と言います)。しかし、このような弾性体の運動を考えるには、ごくごくミクロな視点で、全ての分子に気を配らなくてはなりません。これはあまりにも大変です。
+
+そこで、力をかけても変形しない理想的な物体である剛体を念頭に考えます。剛体であれば、一つの分子に力を加えれば、分子間の極めて硬い結合を介して、結局、全ての分子に瞬時に力が伝わります。そのため、実用上はすべての分子にいちいち気を配らなくとも物体の運動を簡単に記述できます。実在の物体は全て弾性体ですが、十分硬い物体であれば剛体に近似しても実験的事実と数式は極めて一致します。
+
+剛体を考えるには、その剛体を構成する微小な粒子(質点)の運動方程式を考え、すべての粒子についてそれを足し合わせます。そうして「各運動量保存則」、さらにそれを用いて「回転運動方程式」を得ることができます。
+
+\section{角運動量と力のモーメントの関係式}
+\label{angularmomentum}
+力学は全て運動方程式から始まります。今回求める各運動量保存則というのは、
+
+\begin{equation}
+    (角運動量の変化率) = (力のモーメント) \notag
+\end{equation}
+
+という式です。ここで、角運動量というのは物体の運動量ベクトルに左から物体の位置ベクトルを外積としてかけ合わせたものです。詳しくはこれからお話しましょう。
+
+まずは位置ベクトル$\bm{r}$にある質量$m$の物体に力がかかるときの運動方程式を見てみましょう。
+
+\begin{eqnarray}
+    m\ddot{\bm{r}} &=& \bm{f} \notag \\
+    m\frac{\mathrm{d}\bm{v}}{\mathrm{d}t} &=& \bm{f} \notag
+\end{eqnarray}
+
+ここで、後々都合が良いように$\ddot{\bm{r}}$を物体の速度$\bm{v}$の時間微分として表しました。さて、両辺に左から位置ベクトル$\bm{r}$を外積として掛け合わせてみましょう。
+
+\begin{equation}
+    \bm{r}\times\frac{\mathrm{d}\bm{v}}{\mathrm{d}t} = \bm{r}\times\bm{f} \notag
+\end{equation}
+
+ここで、左辺を都合よく変形するために、以下の式を考えてみましょう。積の微分を使って展開すると、同一な2ベクトルの外積を取る項が現れ、それは$\bm{0}$です。
+
+\begin{eqnarray}
+    \frac{\mathrm{d}}{\mathrm{d}t}\left(\bm{r}\times\bm{v}\right) &=& \frac{\mathrm{d}\bm{r}}{\mathrm{d}t}\times\bm{v}+\bm{r}\times\frac{\mathrm{d}\bm{v}}{\mathrm{d}t} \notag\\
+    &=&\bm{v}\times\bm{v}+\bm{r}\times\frac{\mathrm{d}\bm{v}}{\mathrm{d}t} \notag\\
+    &=&\bm{r}\times\frac{\mathrm{d}\bm{v}}{\mathrm{d}t} \notag
+\end{eqnarray}
+
+これで、先程の式は、以下のように変形できます。
+
+\begin{eqnarray}
+    \bm{r}\times\frac{\mathrm{d}\bm{v}}{\mathrm{d}t} &=& \bm{r}\times\bm{f} \notag\\
+    \frac{\mathrm{d}}{\mathrm{d}t}\left(\bm{r}\times m\bm{v}\right) &=& \bm{r}\times\bm{f} \notag\\
+    \frac{\mathrm{d}\bm{l}}{\mathrm{d}t} &=& \bm{n}
+\end{eqnarray}
+
+これを角運動量保存則と言い、ここで置換した$\bm{l},\bm{n}$はそれぞれ角運動量、モーメントと言います。
+
+もう一度先程の式を出すと、この式は、
+
+\begin{equation}
+    (角運動量の変化率) = (力のモーメント) \notag
+\end{equation}
+
+という意味を持ちます。
+
+
+
+
+\subsection{中心力と角運動量保存則}
+\label{centralforce}
+常にある一点を向いた力が物体にかかっているとしましょう。この時、この力を中心力と言います。また、力が向いている点をO(原点)とすると、物体の位置ベクトル$\bm{r}$と中心力$\bm{f}$は平行です。よって、物体に中心力のみが働くとき、
+
+\begin{equation}
+    \bm{n}=\bm{r}\times\bm{f}=\bm{0} \notag
+\end{equation}
+
+となり、$\bm{n}=\mathrm{d}\bm{l}/\mathrm{d}t$ですから、物体の角運動量は常に一定となります。つまり、中心料がはたらくときには各運動量保存則が成り立ちます。
+
+
+
+\subsection{面積速度一定}
+\label{areavelocity}
+物体に中心力が働くとき、物体と力の向く先(点Oとする)を結んだ線が単位時間に掃く面積は一定になります。面積速度と角運動量の間には簡単な関係がありますので、少し確認してみましょう。
+
+位置$\bm{r}$の点に速度$\bm{v}$で動く物体があるとき、点Oまわりの面積速度$s$は$\bm{r}$と$\bm{v}$のなす角を$\theta$として、
+
+\begin{equation}
+\label{eq:s}
+    s = \frac{1}{2}rv\sin\theta
+\end{equation}
+
+となりました。ここで、角運動量の大きさ$l$は、$\bm{r}$と$\bm{v}$を2辺とする平行四辺形の面積なので、
+
+\begin{equation}
+    l = mvr\sin\theta \notag
+\end{equation}
+
+と表せます。これを式(\ref{eq:s})に代入すると、結局、
+
+\begin{equation}
+\label{eq:s2}
+    s = \frac{l}{2m}
+\end{equation}
+
+となります。また、面積速度はベクトル量として定義されることも多く、その定義は簡単に、
+
+\begin{equation}
+    s = \frac{1}{2}\bm{r}\times\bm{v}
+\end{equation}
+
+です。
+
+また、\ref{centralforce}節で述べたように、物体に中心力がはたらくとき、物体の角運動量$\bm{l}$は保存されます。このときに面積速度も保存されるのは式(\ref{eq:s2})より明らかでしょう。
+
+
+
+
+\section{回転運動方程式}
+\label{rotationequation}
