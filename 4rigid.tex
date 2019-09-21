@@ -10,7 +10,7 @@
 
 \section{角運動量と力のモーメントの関係式}
 \label{angularmomentum}
-力学は全て運動方程式から始まります。今回求める各運動量保存則というのは、
+力学は全て運動方程式から始まります。今回求める角運動量保存則というのは、
 
 \begin{equation}
     (角運動量の変化率) = (力のモーメント) \notag
@@ -93,7 +93,7 @@
 
 \begin{equation}
 \label{eq:s2}
-    s = \frac{l}{2m}
+    s = \frac{l}{2m} \notag
 \end{equation}
 
 となります。また、面積速度はベクトル量として定義されることも多く、その定義は簡単に、
@@ -111,3 +111,115 @@
 
 \section{回転運動方程式}
 \label{rotationequation}
+剛体の力学でよく使う、回転運動方程式を導出しましょう。これは角運動量保存則を起点として、左辺に現れる角運動量と右辺に現れるモーメントのそれぞれを剛体の場合について導出することで求められます。
+
+\subsection{質点の角運動量}
+剛体の回転運動方程式を考える前に、まずは質点の角運動量$\bm{l}$について考えます。
+
+質点の角運動量は、
+
+\begin{eqnarray}
+    \bm{l}=\bm{r}\times m\bm{v} \notag
+\end{eqnarray}
+
+でした。ここで、$v$を$\bm{r}$に垂直な$v_\theta$と$\bm{r}$に平行な$v_r$に分解しましょう。
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tikzpicture}[domain=-0:10,samples=300,>=stealth]
+   % 座標軸
+   \draw[->] (-0.5,0) -- (3,0) node[right] {$x$};
+   \draw[->] (0,-0.5) -- (0,3) node[above] {$y$};
+   \node [anchor=north west] at (0,0) {O};
+   
+   \draw[->] (0,0) -- ({2*cos(30)},{2*sin(30)}) node[below] {$\bm{r}$};
+   \draw[->] ({2*cos(30)},{2*sin(30)}) -- ({2*cos(30)+sqrt(2)*cos(75)},{2*sin(30)+sqrt(2)*sin(75)}) node[above] {$\bm{v}_r$};
+   \draw[->] ({2*cos(30)},{2*sin(30)}) -- ({3*cos(30)},{3*sin(30)}) node[below] {$\bm{v}_r$};
+   \draw[->] ({2*cos(30)},{2*sin(30)}) -- ({2*cos(30)-cos(60)},{2*sin(30)+sin(60)}) node[below] {$\bm{v}_\theta$};
+   
+   \draw [dashed]({3*cos(30)},{3*sin(30)})--({2*cos(30)+sqrt(2)*cos(75)},{2*sin(30)+sqrt(2)*sin(75)});
+   \draw [dashed]({2*cos(30)-cos(60)},{2*sin(30)+sin(60)})--({2*cos(30)+sqrt(2)*cos(75)},{2*sin(30)+sqrt(2)*sin(75)});
+\end{tikzpicture}
+\caption{$v_\theta$と$v_r$の図解}
+\end{center}
+\end{figure}
+
+このとき、$v_\theta,v_r$はそれぞれ、
+
+\begin{eqnarray}
+    v_\theta=r\dot{\theta}=r\omega,\ v_r=\dot{r} \notag
+\end{eqnarray}
+
+です。$v_\theta$については、円運動の速度の式$v=r\omega$を思い出せばすぐに理解できるでしょう\footnote{これは、$x=r\cos(\omega t),y=r\sin(\omega t)$をそれぞれ$t$で微分して、$\dot{x}=-r\omega\sin(\omega t), \dot{y}=r\omega\cos(\omega t)$とし、速度ベクトルの大きさ$v=\sqrt{\dot{x}^2+\dot{y}^2}=r\omega$と導出できます。}。
+
+そうすると、外積で算出されるベクトルの大きさは2ベクトルを2辺とする平行四辺形の面積だったので、
+
+\begin{eqnarray}
+    l=r\times mv_\theta=mr\omega^2 \notag
+\end{eqnarray}
+
+となります。
+
+\subsection{慣性モーメント}
+それでは各質点の角運動量を全部足し合わせることで、剛体の角運動量を求めましょう。剛体の角運動量の大きさ$L$は、
+
+\begin{eqnarray}
+    L=\sum_i m_ir_i^2\omega=I\omega \notag
+\end{eqnarray}
+
+となります。ここで、剛体内の全ての質点で角速度$\omega$は等しいことに注意しましょう。上の式で新たに$I$を定義しましたが、
+
+\begin{eqnarray}
+    I=\sum_i m_ir_i^2
+\end{eqnarray}
+
+を慣性モーメントと言い、その剛体の回転のしにくさを表す指標となります。
+
+これで、角運動量保存則の左辺に現れる角運動量の、剛体の場合の式が導出できました。
+
+\subsection{モーメント}
+モーメントには質点間に働く内力によるモーメントと、外から加える外力のモーメントがあります。
+
+結論から言うと内力のモーメントは$\bm{0}$になるのですが、それを証明しましょう。簡単のため、2質点間の内力について考えましょう。2質点間で内力が$\bm{0}$であれば、全ての質点間での内力の合計は$\bm{0}$です。
+
+2質点(質点1、質点2)間には引力または斥力である力$\bm{f}_{12}$と$\bm{f}_{21}$が働いています。ここで、この2つの力が同じ大きさで逆向きであることを考慮すると、
+
+\begin{eqnarray}
+    \bm{n}_{12}&=&\bm{r}_1\times\bm{f}_{12}+\bm{r}_2\times\bm{f}_{21} \notag \\
+    &=&\bm{r}_1\times\bm{f}_{12}-\bm{r}_2\times\bm{f}_{12} \notag \\
+    &=&(\bm{r}_1-\bm{r}_2)\times\bm{f}_{12} \notag
+\end{eqnarray}
+
+ここで、$\bm{r}_1-\bm{r}_2$は$\bm{f}_{12}$に平行ですから、$\bm{n}_{12}=\bm{0}$となります。
+
+これより、剛体を構成する各質点に働くモーメントの和は、剛体にかかる外力のモーメントに等しいことがわかります。
+
+\subsection{回転運動方程式}
+
+以上より、角運動量保存則の式として、
+
+\begin{eqnarray}
+    \frac{\mathrm{d}\bm{L}}{\mathrm{d}t}&=&\bm{N} \notag \\
+    \frac{\mathrm{d}L}{\mathrm{d}t}&=&N \notag \\
+    \frac{\mathrm{d}}{\mathrm{d}t}I\omega&=&N \notag
+\end{eqnarray}
+
+慣性モーメント$I$は物体ごとに固有で運動しても変化しないので、
+
+\begin{eqnarray}
+    I\frac{\mathrm{d}\omega}{\mathrm{d}t}&=&N
+    \label{eq:rollingequation}
+\end{eqnarray}
+
+ここで、$N$は剛体にかかる力のモーメント$\bm{N}$の、回転軸に平行な成分(つまり、質点の位置ベクトル$\bm{r}$と、力ベクトル$\bm{f}$の回転軸に垂直な成分$\bm{f}_\theta$の外積の大きさ)です。
+
+式(\ref{eq:rollingequation})を回転運動方程式と言います。
+
+\section{回転による運動エネルギー}
+回転による運動エネルギーは、各質点の運動エネルギー$1/2m_iv_i^2=1/2m_i(r_i\omega)^2$の総和ですから、
+
+\begin{eqnarray}
+    K&=&\sum_i\left(\frac{1}{2}m_i(r_i\omega)^2\right) \notag \\
+    &=&\sum_i\left(\frac{1}{2}m_ir_i^2\right)\omega^2 \notag \\
+    &=&\frac{1}{2}I\omega^2
+\end{eqnarray}
