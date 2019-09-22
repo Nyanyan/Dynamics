@@ -10,7 +10,7 @@
 
 \section{角運動量と力のモーメントの関係式}
 \label{angularmomentum}
-力学は全て運動方程式から始まります。今回求める角運動量保存則というのは、
+力学は全て運動方程式から始まります。今回求める「角運動量と力のモーメントの関係」というのは、
 
 \begin{equation}
     (角運動量の変化率) = (力のモーメント) \notag
@@ -47,7 +47,7 @@
     \frac{\mathrm{d}\bm{l}}{\mathrm{d}t} &=& \bm{n}
 \end{eqnarray}
 
-これを角運動量保存則と言い、ここで置換した$\bm{l},\bm{n}$はそれぞれ角運動量、モーメントと言います。
+これをが角運動量と力のモーメントの関係式であり、ここで置換した$\bm{l},\bm{n}$はそれぞれ角運動量、モーメントと言います。
 
 もう一度先程の式を出すと、この式は、
 
@@ -68,7 +68,7 @@
     \bm{n}=\bm{r}\times\bm{f}=\bm{0} \notag
 \end{equation}
 
-となり、$\bm{n}=\mathrm{d}\bm{l}/\mathrm{d}t$ですから、物体の角運動量は常に一定となります。つまり、中心料がはたらくときには各運動量保存則が成り立ちます。
+となり、$\bm{n}=\mathrm{d}\bm{l}/\mathrm{d}t$ですから、物体の角運動量は常に一定となります。つまり、中心力がはたらくときには角運動量保存則(角運動量の時間微分が$\bm{0}$になる)が成り立ちます。
 
 
 
@@ -215,6 +215,8 @@
 
 式(\ref{eq:rollingequation})を回転運動方程式と言います。
 
+
+
 \section{回転による運動エネルギー}
 回転による運動エネルギーは、各質点の運動エネルギー$1/2m_iv_i^2=1/2m_i(r_i\omega)^2$の総和ですから、
 
@@ -223,3 +225,103 @@
     &=&\sum_i\left(\frac{1}{2}m_ir_i^2\right)\omega^2 \notag \\
     &=&\frac{1}{2}I\omega^2
 \end{eqnarray}
+
+
+\section{慣性モーメント}
+\label{inertiamoment}
+さて、回転運動方程式が導出できたところで、具体的に剛体の慣性モーメントを算出するのに便利な公式を2つご紹介しましょう。これらは平行軸の定理と直交軸の定理と言って、ある回転軸周りでの慣性モーメントがわかっているときに別の位置に回転軸をとってもその回転軸周りでの慣性モーメントがすぐに算出できるという優れものです。
+
+\subsection{平行軸の定理}
+まずは平行軸の定理をご紹介しましょう。
+
+\begin{eqnarray}
+    I_O=I_G+Md^2
+\end{eqnarray}
+
+これは、物体の重心を通る回転軸Gと平行な軸Oを別のところにとった場合、O軸での慣性モーメント$I_O$は$I_G$と、$OG$間の距離$d$、物体の質量$M$によって求まることを意味しています。図で軸は紙面から飛び出ていると考えてください。
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tikzpicture}[domain=-0:10,samples=300,>=stealth]
+   % 座標軸
+   \fill[lightgray] (-0.5,-0.5)--(4,-0.5)--(4,4)--(-0.5,4)--(-0.5,-0.5);
+   \draw[->] (-0,0) -- (5,0) node[right] {$x$};
+   \draw[->] (0,0) -- (0,5) node[above] {$y$};
+   \draw[->] (2,2) -- (5,2) node[right] {$x'$};
+   \draw[->] (2,2) -- (2,5) node[above] {$y'$};
+   \node [anchor=north] at (0,0) {O};
+   \node [anchor=north west] at (2,2) {G};
+   
+   \fill[black] (3.5,3) circle[radius=0.05] node [anchor=west]{$m_i$};
+   
+   \draw[dashed](2,2)--(0,2) node [anchor=east]{$y_G$};
+   \draw[dashed](2,2)--(2,0) node [anchor=north]{$x_G$};
+   \draw[dashed](3.5,3)--(3.5,2) node [anchor=north west]{$x'_i$}--(3.5,0) node [anchor=north]{$x_i$};
+   \draw[dashed](3.5,3)--(2,3) node [anchor=south east]{$y'_i$}--(0,3) node [anchor=east]{$y_i$};
+   
+   \draw[<->](0.1,0.1)--(1.9,1.9) node at (1,0.8) {$d$};
+   
+\end{tikzpicture}
+\caption{平行軸の定理}
+\end{center}
+\end{figure}
+
+証明しましょう。
+
+\begin{eqnarray}
+    I_O&=&\sum_i m_i(x_i^2+y_i^2) \notag \\
+    &=&\sum_i m_i((x_G+x'_i)^2+(y_G+y'_i)^2) \notag \\
+    &=&\sum_i m_i(x_G^2+y_G^2)+\sum_i m_i(x_i'^2+y_i'^2)+2\sum_i m_ix_G x'_i+2\sum_i m_iy_G y'_i \notag \\
+    &=&(x_G^2+y_G^2)\sum_i m_i+\sum_i m_i(x_i'^2+y_i'^2)+2x_G\sum_i m_ix'_i+2y_G\sum_i m_iy'_i \notag \\
+    &=&Md^2+I_G \notag
+\end{eqnarray}
+
+最後の式変形で、$(x_G^2+y_G^2)=d^2$、$\sum_i m_i=M$です。また、式変形前の右辺第二項は重心を通る軸周りの慣性モーメント$I_G$に等しくなります。問題は右辺第三項、第四項です。結論から言うと$\sum$内が$0$になるのですが、その証明を少ししましょう。
+
+重心の定義から、
+
+\begin{eqnarray}
+    \bm{r_G}=\frac{\sum_i m_i\bm{r_i}}{\sum_i m_i} \notag
+\end{eqnarray}
+
+でした。ここで、$\bm{r}'_i=\bm{r}_i-\bm{r}_G\Leftrightarrow\bm{r}_i=\bm{r}'_i+\bm{r}_G$としましょう。これを上の式に代入すると、
+
+\begin{eqnarray}
+    \bm{r_G}&=&\frac{\sum_i m_i(\bm{r}'_i+\bm{r}_G)}{\sum_i m_i} \notag \\
+    &=&\frac{\sum_i m_i\bm{r}'_i}{\sum_i m_i}+\frac{\sum_i m_i\bm{r}_G}{\sum_i m_i} \notag \\
+    &=&\frac{\sum_i m_i\bm{r}'_i}{\sum_i m_i}+\bm{r}_G \notag
+\end{eqnarray}
+
+よって、
+
+\begin{eqnarray}
+    \sum_i m_i\bm{r}'_i=\bm{0}
+\end{eqnarray}
+
+です。これによって先程の式の右辺第三項、第四項が0になることが証明できました。
+
+
+
+\subsection{直交軸の定理}
+薄い板上のある点Oで互いに直行する3つの軸$x軸、y軸、z軸$を考えます。なお、$x$軸と$y$軸は板と平行に、$z$軸は板と垂直に立てるものとします。
+
+このとき、それぞれの軸周りでの慣性モーメントには、
+
+\begin{eqnarray}
+    I_z=I_x+I_y
+\end{eqnarray}
+
+が成立します。これを直交軸の定理と言います。
+
+証明しましょう。
+
+\begin{eqnarray}
+    I_x=\sum_i m_i y_i^2,\ I_y=\sum_i m_i x_i^2,\ I_z=\sum_i m_i(x_i+y_i) \notag
+\end{eqnarray}
+
+ですから、自明に直交軸の定理が成立します。
+
+なお、$I_x$において$r_i^2$であるべきところが$y_i^2$になっているのは、$r_i$が軸と質点との距離だからです。これは$I_y$についても同様です。
+
+
+
